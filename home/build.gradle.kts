@@ -1,5 +1,3 @@
-import com.android.ide.common.repository.main
-
 plugins {
   id("com.android.library")
   id("kotlin-android")
@@ -27,16 +25,17 @@ android {
   }
 
   sourceSets {
-    getByName("main").res.srcDirs("src/main/res-home")
+    getByName("main").res.srcDirs("src/main/res-home", "src/main/res-library")
   }
 }
 
 dependencies {
+  implementation(project(":style"))
+
   implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
   implementation("androidx.constraintlayout:constraintlayout:${rootProject.extra["constraint"]}")
   implementation("androidx.recyclerview:recyclerview:${rootProject.extra["recyclerview"]}")
   implementation("com.google.android.material:material:${rootProject.extra["material"]}")
-  implementation("androidx.cardview:cardview:${rootProject.extra["cardview"]}")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.extra["kotlin"]}")
   implementation("com.squareup.picasso:picasso:${rootProject.extra["picasso"]}")
   implementation("com.jakewharton.timber:timber:${rootProject.extra["timber"]}")

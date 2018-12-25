@@ -5,17 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.paligot.home.databinding.ListItemMediaLineBinding
+import com.paligot.home.R
+import com.paligot.style.Direction
+import com.paligot.style.MarginItemDecoration
+import com.paligot.style.databinding.ListItemMediaLineBinding
 
 class HomeAdapter : ListAdapter<MediaListUi, HomeAdapter.ViewHolder>(HomeDiff()) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-    return ViewHolder(
-      ListItemMediaLineBinding.inflate(
-        LayoutInflater.from(parent.context),
-        parent,
-        false
-      )
-    )
+    return ViewHolder(ListItemMediaLineBinding.inflate(LayoutInflater.from(parent.context), parent, false))
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,6 +29,13 @@ class HomeAdapter : ListAdapter<MediaListUi, HomeAdapter.ViewHolder>(HomeDiff())
         titleTextView.text = mediaList.title
         val adapter = MediaListAdapter()
         mediaRecyclerView.adapter = adapter
+        mediaRecyclerView.setHasFixedSize(true)
+        mediaRecyclerView.addItemDecoration(
+          MarginItemDecoration(
+            binding.root.resources.getDimensionPixelSize(R.dimen.list_media_spacing),
+            Direction.HORIZONTAL
+          )
+        )
         adapter.submitList(mediaList.medias)
       }
     }

@@ -4,6 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.paligot.home.library.LibraryFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_library" />
+-->
+
     <fragment
         android:id="@+id/fragment"
         android:name="com.paligot.home.home.HomeFragment"

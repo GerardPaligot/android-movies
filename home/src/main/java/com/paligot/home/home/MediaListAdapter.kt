@@ -5,20 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.paligot.home.databinding.ListItemMediaBinding
+import com.paligot.home.BuildConfig
+import com.paligot.style.databinding.ListItemMediaBinding
 import com.squareup.picasso.Picasso
 
-class MediaListAdapter : ListAdapter<MediaUi, MediaListAdapter.ViewHolder>(
-  MediaListDiff()
-) {
+class MediaListAdapter : ListAdapter<MediaUi, MediaListAdapter.ViewHolder>(MediaListDiff()) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-    return ViewHolder(
-      ListItemMediaBinding.inflate(
-        LayoutInflater.from(parent.context),
-        parent,
-        false
-      )
-    )
+    return ViewHolder(ListItemMediaBinding.inflate(LayoutInflater.from(parent.context), parent, false))
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -33,7 +26,7 @@ class MediaListAdapter : ListAdapter<MediaUi, MediaListAdapter.ViewHolder>(
     fun bind(item: MediaUi) {
       binding.apply {
         Picasso.get().apply {
-          isLoggingEnabled = true
+          isLoggingEnabled = BuildConfig.DEBUG
           load(item.pictureUrl).into(mediaImageView)
         }
         titleTextView.text = item.title
