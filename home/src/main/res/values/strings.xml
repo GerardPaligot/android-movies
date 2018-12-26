@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">home</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_library">Library</string>
 </resources>

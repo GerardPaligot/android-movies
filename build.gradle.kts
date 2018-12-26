@@ -10,6 +10,7 @@ buildscript {
     set("constraint", "1.1.3")
     set("recyclerview", "1.0.0")
     set("cardview", "1.0.0")
+    set("navigation", "1.0.0-alpha09")
 
     set("picasso", "2.71828")
     set("timber", "4.7.1")
@@ -24,6 +25,7 @@ buildscript {
 
   dependencies {
     classpath("com.android.tools.build:gradle:3.2.1")
+    classpath("android.arch.navigation:navigation-safe-args-gradle-plugin:${rootProject.extra["navigation"]}")
     classpath(kotlin("gradle-plugin", rootProject.extra["kotlin"] as String))
   }
 }

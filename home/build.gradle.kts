@@ -1,5 +1,6 @@
 plugins {
   id("com.android.library")
+  id("androidx.navigation.safeargs")
   id("kotlin-android")
   id("kotlin-android-extensions")
   id("kotlin-kapt")
@@ -13,6 +14,7 @@ android {
     targetSdkVersion(rootProject.extra["targetSdk"] as Int)
     testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     consumerProguardFile("consumer-proguard-rules.pro")
+    vectorDrawables.useSupportLibrary = true
   }
 
   dataBinding {
@@ -25,7 +27,7 @@ android {
   }
 
   sourceSets {
-    getByName("main").res.srcDirs("src/main/res-home", "src/main/res-library")
+    getByName("main").res.srcDirs("src/main/res-home", "src/main/res-library", "src/main/res-main")
   }
 }
 
@@ -36,6 +38,11 @@ dependencies {
   implementation("androidx.constraintlayout:constraintlayout:${rootProject.extra["constraint"]}")
   implementation("androidx.recyclerview:recyclerview:${rootProject.extra["recyclerview"]}")
   implementation("com.google.android.material:material:${rootProject.extra["material"]}")
+
+  implementation("android.arch.navigation:navigation-fragment-ktx:${rootProject.extra["navigation"]}")
+  implementation("android.arch.navigation:navigation-ui-ktx:${rootProject.extra["navigation"]}")
+
+
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.extra["kotlin"]}")
   implementation("com.squareup.picasso:picasso:${rootProject.extra["picasso"]}")
   implementation("com.jakewharton.timber:timber:${rootProject.extra["timber"]}")

@@ -4,19 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--
     <fragment
         android:id="@+id/fragment"
-        android:name="com.paligot.home.library.LibraryFragment"
+        android:name="com.paligot.home.main.MainFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_library" />
--->
-
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.paligot.home.home.HomeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_main" />
 </FrameLayout>
