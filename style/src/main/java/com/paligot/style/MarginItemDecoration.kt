@@ -16,6 +16,7 @@ class MarginItemDecoration(
       if (direction == Direction.HORIZONTAL) {
         left = if (parent.getChildAdapterPosition(view) == 0) space else 0
         right = space
+        bottom = space
       } else if (direction == Direction.VERTICAL) {
         top = if (parent.getChildAdapterPosition(view) == 0) space else 0
         bottom = space

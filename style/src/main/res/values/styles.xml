@@ -3,11 +3,20 @@
 
     <style name="Theme.Movie" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="colorSurface">@android:color/white</item>
+        <item name="colorOnSurface">@color/colorPrimaryDark</item>
+
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+
         <item name="android:windowBackground">@color/bgWindow</item>
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
+        <item name="materialCardViewStyle">@style/Widget.MaterialComponents.CardView</item>
     </style>
 
-    <style name="Theme.Movie.AppBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Movie.AppBar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 </resources>
