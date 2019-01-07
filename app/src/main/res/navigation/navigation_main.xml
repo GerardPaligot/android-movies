@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/mainHomeFragment">
+
+    <fragment
+        android:id="@+id/mainUserFragment"
+        android:name="com.paligot.user.main.MainFragment"
+        android:label="MainUserFragment"
+        tools:layout="@layout/fragment_user_main" />
+    <fragment
+        android:id="@+id/mainHomeFragment"
+        android:name="com.paligot.home.main.MainFragment"
+        android:label="MainHomeFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainHomeFragment_to_mainUserFragment"
+            app:destination="@id/mainUserFragment"
+            app:enterAnim="@animator/slide_up"
+            app:popExitAnim="@animator/slide_down" />
+    </fragment>
+</navigation>

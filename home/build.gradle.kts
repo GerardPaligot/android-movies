@@ -14,7 +14,6 @@ android {
     targetSdkVersion(rootProject.extra["targetSdk"] as Int)
     testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     consumerProguardFile("consumer-proguard-rules.pro")
-    vectorDrawables.useSupportLibrary = true
   }
 
   dataBinding {
@@ -29,19 +28,25 @@ android {
   sourceSets {
     getByName("main").res.srcDirs("src/main/res-home", "src/main/res-library", "src/main/res-main")
   }
+
+  lintOptions {
+    isAbortOnError = true
+  }
 }
 
 dependencies {
+  implementation(project(":navigation"))
   implementation(project(":style"))
 
   implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
   implementation("androidx.constraintlayout:constraintlayout:${rootProject.extra["constraint"]}")
   implementation("androidx.recyclerview:recyclerview:${rootProject.extra["recyclerview"]}")
   implementation("com.google.android.material:material:${rootProject.extra["material"]}")
+  implementation("androidx.lifecycle:lifecycle-extensions:${rootProject.extra["livedata"]}")
+  kapt("androidx.lifecycle:lifecycle-compiler:${rootProject.extra["livedata"]}")
 
   implementation("android.arch.navigation:navigation-fragment-ktx:${rootProject.extra["navigation"]}")
   implementation("android.arch.navigation:navigation-ui-ktx:${rootProject.extra["navigation"]}")
-
 
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.extra["kotlin"]}")
   implementation("com.squareup.picasso:picasso:${rootProject.extra["picasso"]}")

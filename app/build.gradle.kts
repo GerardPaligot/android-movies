@@ -2,6 +2,7 @@ plugins {
   id("com.android.application")
   id("kotlin-android")
   id("kotlin-android-extensions")
+  id("kotlin-kapt")
 }
 
 android {
@@ -31,14 +32,24 @@ android {
     setSourceCompatibility(JavaVersion.VERSION_1_8)
     setTargetCompatibility(JavaVersion.VERSION_1_8)
   }
+
+  lintOptions {
+    isAbortOnError = true
+  }
 }
 
 dependencies {
   implementation(project(":home"))
+  implementation(project(":user"))
+  implementation(project(":navigation"))
   implementation(project(":style"))
 
   implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
   implementation("com.google.android.material:material:${rootProject.extra["material"]}")
+
+  implementation("android.arch.navigation:navigation-fragment-ktx:${rootProject.extra["navigation"]}")
+  implementation("android.arch.navigation:navigation-ui-ktx:${rootProject.extra["navigation"]}")
+
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.extra["kotlin"]}")
 
   testImplementation("junit:junit:4.12")

@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.paligot.home.home.HomeFragment"
-        android:label="HomeFragment"
+        android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/libraryFragment"
         android:name="com.paligot.home.library.LibraryFragment"
-        android:label="LibraryFragment"
+        android:label="@string/menu_library"
         tools:layout="@layout/fragment_library" />
 </navigation>

@@ -30,6 +30,7 @@ class MediaListAdapter : ListAdapter<MediaUi, MediaListAdapter.ViewHolder>(Media
           load(item.pictureUrl).into(mediaImageView)
         }
         titleTextView.text = item.title
+        executePendingBindings()
       }
     }
   }

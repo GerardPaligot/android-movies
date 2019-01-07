@@ -37,6 +37,7 @@ class HomeAdapter : ListAdapter<MediaListUi, HomeAdapter.ViewHolder>(HomeDiff())
           )
         )
         adapter.submitList(mediaList.medias)
+        executePendingBindings()
       }
     }
   }

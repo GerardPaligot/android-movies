@@ -11,9 +11,17 @@ buildscript {
     set("recyclerview", "1.0.0")
     set("cardview", "1.0.0")
     set("navigation", "1.0.0-alpha09")
+    set("livedata", "2.0.0")
 
+    set("retrofit", "2.5.0")
+    set("okhttp", "3.12.1")
     set("picasso", "2.71828")
     set("timber", "4.7.1")
+    set("circular", "3.2.0")
+    set("rxjava", "2.1.16")
+    set("rxandroid", "2.1.0")
+    set("rxpreference", "2.0.0")
+    set("dagger", "2.16")
 
     set("kotlin", "1.3.11")
   }

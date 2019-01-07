@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_user"
+    app:startDestination="@id/userConnectedFragment">
+
+    <fragment
+        android:id="@+id/userConnectedFragment"
+        android:name="com.paligot.user.connected.UserConnectedFragment"
+        android:label="UserConnectedFragment"
+        tools:layout="@layout/fragment_user_connected" />
+    <fragment
+        android:id="@+id/userDisconnectedFragment"
+        android:name="com.paligot.user.disconnected.UserDisconnectedFragment"
+        android:label="UserDisconnectedFragment"
+        tools:layout="@layout/fragment_user_disconnected" />
+    <action
+        android:id="@+id/action_to_userDisconnectedFragment"
+        app:destination="@+id/userDisconnectedFragment" />
+</navigation>
