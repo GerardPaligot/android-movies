@@ -50,6 +50,10 @@ class UserDisconnectedFragment : Fragment() {
     viewModel.sessionSaved.observe(this, Observer {
       findNavController().popBackStack()
     })
+    viewModel.error.observe(this, Observer {
+      Snackbar.make(view, R.string.user_impossible_connect_server, Snackbar.LENGTH_SHORT).show()
+      navigationViewModel.popBackStack()
+    })
     client.event.observe(this, Observer {
       if (it == Status.ALLOW) {
         viewModel.session()

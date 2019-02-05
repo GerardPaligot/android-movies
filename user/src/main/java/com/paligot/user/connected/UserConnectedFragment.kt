@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.paligot.navigation.NavigationViewModel
 import com.paligot.user.NavigationUserDirections
 import com.paligot.user.databinding.FragmentUserConnectedBinding
 import com.paligot.user.userApplication
@@ -15,6 +17,9 @@ import javax.inject.Inject
 class UserConnectedFragment : Fragment() {
   @Inject
   internal lateinit var viewModel: UserConnectedViewModel
+  private val navigationViewModel: NavigationViewModel by lazy {
+    ViewModelProviders.of(requireActivity())[NavigationViewModel::class.java]
+  }
   private val adapter = UserConnectedAdapter(settingsUi)
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,7 +39,7 @@ class UserConnectedFragment : Fragment() {
     })
     adapter.itemSelected.observe(this, Observer {
       viewModel.logout()
-      viewModel.updateIsLoggedInfo()
+      navigationViewModel.popBackStack()
     })
   }
 }

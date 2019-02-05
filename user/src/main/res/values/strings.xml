@@ -4,4 +4,5 @@
     <string name="user_username">Hello %s!</string>
     <string name="user_disconnection">Disconnection</string>
     <string name="user_deny">Can\'t login you</string>
+    <string name="user_impossible_connect_server">Impossible to connect to The Movie DB</string>
 </resources>
