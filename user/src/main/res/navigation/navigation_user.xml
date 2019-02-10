@@ -14,8 +14,13 @@
         android:id="@+id/userDisconnectedFragment"
         android:name="com.paligot.user.disconnected.UserDisconnectedFragment"
         android:label="UserDisconnectedFragment"
-        tools:layout="@layout/fragment_user_disconnected" />
+        tools:layout="@layout/fragment_user_disconnected" >
+        <action android:id="@+id/action_userDisconnectedFragment_to_userConnectedFragment"
+                app:destination="@id/userConnectedFragment" app:popUpTo="@+id/navigation_user"
+                app:popUpToInclusive="true" app:launchSingleTop="true"/>
+    </fragment>
     <action
         android:id="@+id/action_to_userDisconnectedFragment"
-        app:destination="@+id/userDisconnectedFragment" />
+        app:destination="@+id/userDisconnectedFragment" app:popUpTo="@+id/navigation_user" app:popUpToInclusive="true"
+        app:launchSingleTop="true"/>
 </navigation>

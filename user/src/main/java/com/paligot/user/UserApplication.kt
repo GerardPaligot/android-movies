@@ -1,5 +1,6 @@
 package com.paligot.user
 
+import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjector
@@ -24,5 +25,7 @@ class UserApplication internal constructor() : HasSupportFragmentInjector {
 
 private val appSingleton = UserApplication()
 
+val Activity.userApplication: UserApplication
+  get() = appSingleton
 val Fragment.userApplication: UserApplication
   get() = appSingleton

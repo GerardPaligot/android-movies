@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.paligot.navigation.BackNavigation
 import com.paligot.navigation.NavigationViewModel
 import com.paligot.navigation.UserNavigation
 
@@ -19,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
     navigationViewModel.navigation.observe(this, Observer {
       when (it) {
-        is BackNavigation -> findNavController(R.id.navigationHostFragment).popBackStack()
         is UserNavigation -> findNavController(R.id.navigationHostFragment).navigate(R.id.action_mainHomeFragment_to_mainUserFragment)
       }
     })

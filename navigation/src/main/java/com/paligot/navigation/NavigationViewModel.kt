@@ -14,8 +14,4 @@ class NavigationViewModel : ViewModel() {
   fun goToUserFeature() {
     _navigation.value = UserNavigation
   }
-
-  fun popBackStack() {
-    _navigation.value = BackNavigation
-  }
 }

@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.paligot.navigation.NavigationViewModel
 import com.paligot.shared.services.TheMovieDatabaseService
 import com.paligot.user.R
 import com.paligot.user.databinding.FragmentUserDisconnectedBinding
@@ -23,9 +21,6 @@ class UserDisconnectedFragment : Fragment() {
   @Inject
   internal lateinit var viewModel: UserDisconnectedViewModel
   internal lateinit var client: LoginWebViewClient
-  private val navigationViewModel: NavigationViewModel by lazy {
-    ViewModelProviders.of(requireActivity())[NavigationViewModel::class.java]
-  }
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,18 +43,18 @@ class UserDisconnectedFragment : Fragment() {
       connectionWebView.loadUrl(TheMovieDatabaseService.URL_AUTH.format(it))
     })
     viewModel.sessionSaved.observe(this, Observer {
-      findNavController().popBackStack()
+      findNavController().navigate(UserDisconnectedFragmentDirections.ActionUserDisconnectedFragmentToUserConnectedFragment())
     })
     viewModel.error.observe(this, Observer {
       Snackbar.make(view, R.string.user_impossible_connect_server, Snackbar.LENGTH_SHORT).show()
-      navigationViewModel.popBackStack()
+      requireActivity().finish()
     })
     client.event.observe(this, Observer {
       if (it == Status.ALLOW) {
         viewModel.session()
       } else {
         Snackbar.make(view, R.string.user_deny, Snackbar.LENGTH_SHORT).show()
-        navigationViewModel.popBackStack()
+        requireActivity().finish()
       }
     })
   }

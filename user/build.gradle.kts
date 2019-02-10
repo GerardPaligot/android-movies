@@ -38,7 +38,6 @@ android {
 dependencies {
   api(project(":shared"))
   implementation(project(":style"))
-  implementation(project(":navigation"))
 
   implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
   implementation("androidx.constraintlayout:constraintlayout:${rootProject.extra["constraint"]}")
