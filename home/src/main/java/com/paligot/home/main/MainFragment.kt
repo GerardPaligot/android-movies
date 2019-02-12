@@ -9,7 +9,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.paligot.home.R
 import com.paligot.home.databinding.FragmentMainBinding
-import com.paligot.navigation.NavigationViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
 

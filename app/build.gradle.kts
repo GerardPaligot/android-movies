@@ -41,7 +41,6 @@ android {
 dependencies {
   implementation(project(":home"))
   implementation(project(":user"))
-  implementation(project(":navigation"))
   implementation(project(":style"))
 
   implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")

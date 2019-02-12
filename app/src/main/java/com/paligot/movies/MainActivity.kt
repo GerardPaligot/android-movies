@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.paligot.navigation.NavigationViewModel
-import com.paligot.navigation.UserNavigation
+import com.paligot.home.main.NavigationViewModel
+import com.paligot.home.main.UserNavigation
 
 class MainActivity : AppCompatActivity() {
   private val navigationViewModel: NavigationViewModel by lazy {
