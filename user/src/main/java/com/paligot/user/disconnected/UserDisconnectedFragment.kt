@@ -14,13 +14,13 @@ import com.paligot.shared.services.TheMovieDatabaseService
 import com.paligot.user.R
 import com.paligot.user.databinding.FragmentUserDisconnectedBinding
 import com.paligot.user.userApplication
-import kotlinx.android.synthetic.main.fragment_user_disconnected.*
 import javax.inject.Inject
 
 class UserDisconnectedFragment : Fragment() {
   @Inject
   internal lateinit var viewModel: UserDisconnectedViewModel
   internal lateinit var client: LoginWebViewClient
+  internal lateinit var binding: FragmentUserDisconnectedBinding
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,6 +31,7 @@ class UserDisconnectedFragment : Fragment() {
       connectionWebView.settings.apply {
         javaScriptEnabled = true
       }
+      binding = this
       return@run root
     }
   }
@@ -40,7 +41,7 @@ class UserDisconnectedFragment : Fragment() {
     userApplication.injector.maybeInject(this)
     viewModel.updateToken()
     viewModel.token.observe(this, Observer {
-      connectionWebView.loadUrl(TheMovieDatabaseService.URL_AUTH.format(it))
+      binding.connectionWebView.loadUrl(TheMovieDatabaseService.URL_AUTH.format(it))
     })
     viewModel.sessionSaved.observe(this, Observer {
       findNavController().navigate(UserDisconnectedFragmentDirections.ActionUserDisconnectedFragmentToUserConnectedFragment())

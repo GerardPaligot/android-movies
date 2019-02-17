@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">user</string>
+    <string name="user_app_name">user</string>
     <string name="user_toolbar">Account</string>
     <string name="user_username">Hello %s!</string>
     <string name="user_disconnection">Disconnection</string>

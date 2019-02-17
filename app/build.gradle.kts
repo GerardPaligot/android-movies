@@ -1,7 +1,6 @@
 plugins {
   id("com.android.application")
   id("kotlin-android")
-  id("kotlin-android-extensions")
   id("kotlin-kapt")
 }
 
@@ -36,15 +35,18 @@ android {
   lintOptions {
     isAbortOnError = true
   }
+
+  dynamicFeatures.add(":user")
 }
 
 dependencies {
   implementation(project(":home"))
-  implementation(project(":user"))
   implementation(project(":style"))
 
   implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
   implementation("com.google.android.material:material:${rootProject.extra["material"]}")
+  implementation("androidx.lifecycle:lifecycle-extensions:${rootProject.extra["livedata"]}")
+  kapt("androidx.lifecycle:lifecycle-compiler:${rootProject.extra["livedata"]}")
 
   implementation("android.arch.navigation:navigation-fragment-ktx:${rootProject.extra["navigation"]}")
   implementation("android.arch.navigation:navigation-ui-ktx:${rootProject.extra["navigation"]}")

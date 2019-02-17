@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import com.paligot.home.main.NavigationViewModel
 import com.paligot.home.main.UserNavigation
 
@@ -18,7 +17,10 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
     navigationViewModel.navigation.observe(this, Observer {
       when (it) {
-        is UserNavigation -> findNavController(R.id.navigationHostFragment).navigate(R.id.action_mainHomeFragment_to_mainUserFragment)
+        is UserNavigation -> {
+          startActivity(intentTo(this, Activities.User))
+          overridePendingTransition(R.anim.slide_in_from_down, android.R.anim.fade_out);
+        }
       }
     })
   }

@@ -1,8 +1,7 @@
 plugins {
-  id("com.android.library")
+  id("com.android.dynamic-feature")
   id("androidx.navigation.safeargs")
   id("kotlin-android")
-  id("kotlin-android-extensions")
   id("kotlin-kapt")
 }
 
@@ -12,7 +11,6 @@ android {
   defaultConfig {
     minSdkVersion(rootProject.extra["minSdk"] as Int)
     targetSdkVersion(rootProject.extra["targetSdk"] as Int)
-    testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     consumerProguardFile("consumer-proguard-rules.pro")
     vectorDrawables.useSupportLibrary = true
   }
@@ -36,7 +34,8 @@ android {
 }
 
 dependencies {
-  api(project(":shared"))
+  implementation(project(":app"))
+  implementation(project(":shared"))
   implementation(project(":style"))
 
   implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
@@ -59,8 +58,4 @@ dependencies {
   implementation("io.reactivex.rxjava2:rxandroid:${rootProject.extra["rxandroid"]}")
   implementation("com.jakewharton.timber:timber:${rootProject.extra["timber"]}")
   implementation("com.mikhaellopez:circularimageview:${rootProject.extra["circular"]}")
-
-  testImplementation("junit:junit:4.12")
-  androidTestImplementation("com.android.support.test:runner:1.0.2")
-  androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.2")
 }

@@ -9,13 +9,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.paligot.home.R
 import com.paligot.home.databinding.FragmentMainBinding
-import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : Fragment() {
   private val navigationViewModel: NavigationViewModel by lazy {
     ViewModelProviders.of(requireActivity())[NavigationViewModel::class.java]
   }
+  private lateinit var binding: FragmentMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -23,14 +23,15 @@ class MainFragment : Fragment() {
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return FragmentMainBinding.inflate(inflater, container, false).root
+    binding = FragmentMainBinding.inflate(inflater, container, false)
+    return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+    (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
     (childFragmentManager.findFragmentById(R.id.navigationHostFragment) as NavHostFragment).navController.let {
-      bottomNavigationView.setupWithNavController(it)
+      binding.bottomNavigationView.setupWithNavController(it)
     }
   }
 

@@ -12,7 +12,7 @@ class MainUserActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(ActivityUserMainBinding.inflate(layoutInflater).run {
       toolbar.title = getString(R.string.user_toolbar)
-      toolbar.navigationIcon = ContextCompat.getDrawable(baseContext, R.drawable.ic_close)
+      toolbar.navigationIcon = ContextCompat.getDrawable(baseContext, com.paligot.style.R.drawable.ic_close)
       return@run root
     })
     userApplication.onCreate(baseContext)

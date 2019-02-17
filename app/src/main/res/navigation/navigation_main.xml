@@ -11,15 +11,5 @@
         android:name="com.paligot.home.main.MainFragment"
         android:label="MainHomeFragment"
         tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_mainHomeFragment_to_mainUserFragment"
-            app:destination="@+id/mainUserActivity"
-            app:enterAnim="@anim/slide_in_from_down" app:popExitAnim="@anim/slide_out_down"
-            app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"/>
     </fragment>
-    <activity
-        android:id="@+id/mainUserActivity"
-        android:name="com.paligot.user.main.MainUserActivity"
-        android:label="MainUserActivity"
-        tools:layout="@layout/activity_user_main"/>
 </navigation>
