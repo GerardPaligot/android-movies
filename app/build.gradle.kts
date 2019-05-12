@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-  compileSdkVersion(rootProject.extra["targetSdk"] as Int)
+  compileSdkVersion(Versions.targetSdk)
 
   defaultConfig {
     applicationId = "com.paligot.movies"
-    minSdkVersion(rootProject.extra["minSdk"] as Int)
-    targetSdkVersion(rootProject.extra["targetSdk"] as Int)
+    minSdkVersion(Versions.minSdk)
+    targetSdkVersion(Versions.targetSdk)
     versionCode = 1
     versionName = "1.0"
     testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
@@ -43,17 +43,13 @@ dependencies {
   implementation(project(":home"))
   implementation(project(":style"))
 
-  implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
-  implementation("com.google.android.material:material:${rootProject.extra["material"]}")
-  implementation("androidx.lifecycle:lifecycle-extensions:${rootProject.extra["livedata"]}")
-  kapt("androidx.lifecycle:lifecycle-compiler:${rootProject.extra["livedata"]}")
+  implementation(Dependencies.androidx.appCompat)
+  implementation(Dependencies.androidx.material)
+  implementation(Dependencies.androidx.livedata.extensions)
+  kapt(Dependencies.androidx.livedata.compiler)
 
-  implementation("android.arch.navigation:navigation-fragment-ktx:${rootProject.extra["navigation"]}")
-  implementation("android.arch.navigation:navigation-ui-ktx:${rootProject.extra["navigation"]}")
+  implementation(Dependencies.androidx.navigation.fragment)
+  implementation(Dependencies.androidx.navigation.ui)
 
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.extra["kotlin"]}")
-
-  testImplementation("junit:junit:4.12")
-  androidTestImplementation("com.android.support.test:runner:1.0.2")
-  androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.2")
+  implementation(Dependencies.kotlin)
 }

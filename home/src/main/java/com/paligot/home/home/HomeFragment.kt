@@ -10,8 +10,8 @@ import com.paligot.home.databinding.FragmentHomeBinding
 import timber.log.Timber
 
 class HomeFragment : Fragment() {
-  override fun onAttach(context: Context?) {
-    super.onAttach(context)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
     Timber.plant(Timber.DebugTree())
   }
 

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-  compileSdkVersion(rootProject.extra["targetSdk"] as Int)
+  compileSdkVersion(Versions.targetSdk)
 
   defaultConfig {
-    minSdkVersion(rootProject.extra["minSdk"] as Int)
-    targetSdkVersion(rootProject.extra["targetSdk"] as Int)
+    minSdkVersion(Versions.minSdk)
+    targetSdkVersion(Versions.targetSdk)
     testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     consumerProguardFile("consumer-proguard-rules.pro")
     vectorDrawables.useSupportLibrary = true
@@ -30,10 +30,10 @@ android {
 }
 
 dependencies {
-  implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
-  implementation("androidx.constraintlayout:constraintlayout:${rootProject.extra["constraint"]}")
-  implementation("androidx.recyclerview:recyclerview:${rootProject.extra["recyclerview"]}")
-  implementation("com.google.android.material:material:${rootProject.extra["material"]}")
-  implementation("com.mikhaellopez:circularimageview:${rootProject.extra["circular"]}")
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.extra["kotlin"]}")
+  implementation(Dependencies.androidx.appCompat)
+  implementation(Dependencies.androidx.constraint)
+  implementation(Dependencies.androidx.recycler)
+  implementation(Dependencies.androidx.material)
+  implementation(Dependencies.circular)
+  implementation(Dependencies.kotlin)
 }

@@ -44,7 +44,7 @@ class UserDisconnectedFragment : Fragment() {
       binding.connectionWebView.loadUrl(TheMovieDatabaseService.URL_AUTH.format(it))
     })
     viewModel.sessionSaved.observe(this, Observer {
-      findNavController().navigate(UserDisconnectedFragmentDirections.ActionUserDisconnectedFragmentToUserConnectedFragment())
+      findNavController().navigate(UserDisconnectedFragmentDirections.actionUserDisconnectedFragmentToUserConnectedFragment())
     })
     viewModel.error.observe(this, Observer {
       Snackbar.make(view, R.string.user_impossible_connect_server, Snackbar.LENGTH_SHORT).show()

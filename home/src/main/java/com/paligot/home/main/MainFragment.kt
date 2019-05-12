@@ -35,10 +35,10 @@ class MainFragment : Fragment() {
     }
   }
 
-  override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
     super.onCreateOptionsMenu(menu, inflater)
-    inflater?.inflate(R.menu.menu_top_home, menu)
-    menu?.findItem(R.id.userFragment)?.run {
+    inflater.inflate(R.menu.menu_top_home, menu)
+    menu.findItem(R.id.userFragment)?.run {
       actionView.findViewById<View>(R.id.container).setOnClickListener {
         navigationViewModel.goToUserFeature()
       }

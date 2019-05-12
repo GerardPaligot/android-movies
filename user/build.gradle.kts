@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-  compileSdkVersion(rootProject.extra["targetSdk"] as Int)
+  compileSdkVersion(Versions.targetSdk)
 
   defaultConfig {
-    minSdkVersion(rootProject.extra["minSdk"] as Int)
-    targetSdkVersion(rootProject.extra["targetSdk"] as Int)
+    minSdkVersion(Versions.minSdk)
+    targetSdkVersion(Versions.targetSdk)
     consumerProguardFile("consumer-proguard-rules.pro")
     vectorDrawables.useSupportLibrary = true
   }
@@ -38,24 +38,25 @@ dependencies {
   implementation(project(":shared"))
   implementation(project(":style"))
 
-  implementation("androidx.appcompat:appcompat:${rootProject.extra["appcompat"]}")
-  implementation("androidx.constraintlayout:constraintlayout:${rootProject.extra["constraint"]}")
-  implementation("androidx.recyclerview:recyclerview:${rootProject.extra["recyclerview"]}")
-  implementation("androidx.lifecycle:lifecycle-extensions:${rootProject.extra["livedata"]}")
-  kapt("androidx.lifecycle:lifecycle-compiler:${rootProject.extra["livedata"]}")
+  implementation(Dependencies.androidx.appCompat)
+  implementation(Dependencies.androidx.constraint)
+  implementation(Dependencies.androidx.recycler)
+  implementation(Dependencies.androidx.material)
+  implementation(Dependencies.androidx.livedata.extensions)
+  kapt(Dependencies.androidx.livedata.compiler)
 
-  implementation("android.arch.navigation:navigation-fragment-ktx:${rootProject.extra["navigation"]}")
-  implementation("android.arch.navigation:navigation-ui-ktx:${rootProject.extra["navigation"]}")
+  implementation(Dependencies.androidx.navigation.fragment)
+  implementation(Dependencies.androidx.navigation.ui)
 
-  implementation("com.google.dagger:dagger:${rootProject.extra["dagger"]}")
-  kapt("com.google.dagger:dagger-compiler:${rootProject.extra["dagger"]}")
-  implementation("com.google.dagger:dagger-android-support:${rootProject.extra["dagger"]}")
-  kapt("com.google.dagger:dagger-android-processor:${rootProject.extra["dagger"]}")
-  implementation("com.google.android.material:material:${rootProject.extra["material"]}")
+  implementation(Dependencies.circular)
 
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.extra["kotlin"]}")
-  implementation("io.reactivex.rxjava2:rxjava:${rootProject.extra["rxjava"]}")
-  implementation("io.reactivex.rxjava2:rxandroid:${rootProject.extra["rxandroid"]}")
-  implementation("com.jakewharton.timber:timber:${rootProject.extra["timber"]}")
-  implementation("com.mikhaellopez:circularimageview:${rootProject.extra["circular"]}")
+  implementation(Dependencies.dagger.library)
+  kapt(Dependencies.dagger.compiler)
+  implementation(Dependencies.dagger.android)
+  kapt(Dependencies.dagger.androidCompiler)
+
+  implementation(Dependencies.kotlin)
+  implementation(Dependencies.timber)
+  implementation(Dependencies.rxJava)
+  implementation(Dependencies.rxAndroid)
 }
