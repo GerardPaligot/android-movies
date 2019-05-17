@@ -46,6 +46,7 @@ class SessionSharedPreferenceDataSourceImpl(preferences: SharedPreferences) : Se
     return Completable.create {
       _token.delete()
       _session.delete()
+      it.onComplete()
     }
   }
 }

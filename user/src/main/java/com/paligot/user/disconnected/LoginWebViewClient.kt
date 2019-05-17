@@ -5,6 +5,7 @@ import android.os.Build
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.lifecycle.LiveData
 import com.paligot.shared.livedata.SingleLiveEvent
 import com.paligot.shared.services.TheMovieDatabaseService
 
@@ -13,7 +14,7 @@ class LoginWebViewClient : WebViewClient() {
     SingleLiveEvent<Status>()
   }
 
-  val event: SingleLiveEvent<Status>
+  val event: LiveData<Status>
     get() = _event
 
   override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -36,11 +37,13 @@ class LoginWebViewClient : WebViewClient() {
       _event.setValue(Status.ALLOW)
     } else if (url.endsWith("deny")) {
       _event.setValue(Status.DENY)
+    } else {
+      _event.setValue(Status.UNKNOWN)
     }
     return false
   }
 }
 
 enum class Status {
-  ALLOW, DENY
+  ALLOW, DENY, UNKNOWN
 }

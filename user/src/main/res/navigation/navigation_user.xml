@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation_user"
-    app:startDestination="@id/userConnectedFragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_user"
+            app:startDestination="@id/loadingFragment">
 
     <fragment
         android:id="@+id/userConnectedFragment"
         android:name="com.paligot.user.connected.UserConnectedFragment"
         android:label="UserConnectedFragment"
-        tools:layout="@layout/fragment_user_connected" />
+        tools:layout="@layout/fragment_user_connected"/>
     <fragment
         android:id="@+id/userDisconnectedFragment"
         android:name="com.paligot.user.disconnected.UserDisconnectedFragment"
         android:label="UserDisconnectedFragment"
-        tools:layout="@layout/fragment_user_disconnected" >
+        tools:layout="@layout/fragment_user_disconnected">
         <action android:id="@+id/action_userDisconnectedFragment_to_userConnectedFragment"
                 app:destination="@id/userConnectedFragment" app:popUpTo="@+id/navigation_user"
                 app:popUpToInclusive="true" app:launchSingleTop="true"/>
     </fragment>
-    <action
-        android:id="@+id/action_to_userDisconnectedFragment"
-        app:destination="@+id/userDisconnectedFragment" app:popUpTo="@+id/navigation_user" app:popUpToInclusive="true"
-        app:launchSingleTop="true"/>
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.paligot.user.loading.UserLoadingFragment"
+        android:label="LoadingFragment"
+        tools:layout="@layout/fragment_user_loading">
+        <action android:id="@+id/action_loadingFragment_to_userDisconnectedFragment"
+                app:destination="@id/userDisconnectedFragment" app:popUpTo="@+id/navigation_user"/>
+        <action android:id="@+id/action_loadingFragment_to_userConnectedFragment"
+                app:destination="@id/userConnectedFragment" app:popUpTo="@+id/navigation_user"/>
+    </fragment>
 </navigation>

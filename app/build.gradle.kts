@@ -45,8 +45,8 @@ dependencies {
 
   implementation(Dependencies.androidx.appCompat)
   implementation(Dependencies.androidx.material)
-  implementation(Dependencies.androidx.livedata.extensions)
-  kapt(Dependencies.androidx.livedata.compiler)
+  implementation(Dependencies.androidx.liveData.extensions)
+  kapt(Dependencies.androidx.liveData.compiler)
 
   implementation(Dependencies.androidx.navigation.fragment)
   implementation(Dependencies.androidx.navigation.ui)

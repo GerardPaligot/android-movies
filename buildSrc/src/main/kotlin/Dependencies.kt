@@ -10,7 +10,7 @@ object Versions {
   val recyclerview = "1.0.0"
   val cardview = "1.0.0"
   val navigation = "2.1.0-alpha03"
-  val livedata = "2.0.0"
+  val livedata = "2.1.0-beta01"
 
   val retrofit = "2.5.0"
   val okhttp = "3.12.1"
@@ -52,7 +52,7 @@ object AndroidX {
   val material = "com.google.android.material:material:${Versions.material}"
   val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
   val recycler = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
-  val livedata = LiveData
+  val liveData = LiveData
   val navigation = Navigation
 }
 
@@ -65,6 +65,8 @@ object Navigation {
 object LiveData {
   val extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.livedata}"
   val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.livedata}"
+  val ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.livedata}"
+  val rx = "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.livedata}"
 }
 
 object Retrofit {

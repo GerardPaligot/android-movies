@@ -7,20 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.paligot.shared.services.TheMovieDatabaseService
 import com.paligot.user.R
 import com.paligot.user.databinding.FragmentUserDisconnectedBinding
+import com.paligot.user.main.UserViewModel
+import com.paligot.user.main.UserViewModelFactory
 import com.paligot.user.userApplication
 import javax.inject.Inject
 
 class UserDisconnectedFragment : Fragment() {
   @Inject
-  internal lateinit var viewModel: UserDisconnectedViewModel
-  internal lateinit var client: LoginWebViewClient
-  internal lateinit var binding: FragmentUserDisconnectedBinding
+  lateinit var factory: UserViewModelFactory
+  private val viewModel: UserViewModel by activityViewModels { factory }
+  private lateinit var client: LoginWebViewClient
+  private lateinit var binding: FragmentUserDisconnectedBinding
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,9 +42,9 @@ class UserDisconnectedFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     userApplication.injector.maybeInject(this)
-    viewModel.updateToken()
+    viewModel.requestToken()
     viewModel.token.observe(this, Observer {
-      binding.connectionWebView.loadUrl(TheMovieDatabaseService.URL_AUTH.format(it))
+      binding.connectionWebView.loadUrl(it)
     })
     viewModel.sessionSaved.observe(this, Observer {
       findNavController().navigate(UserDisconnectedFragmentDirections.actionUserDisconnectedFragmentToUserConnectedFragment())
@@ -52,8 +55,8 @@ class UserDisconnectedFragment : Fragment() {
     })
     client.event.observe(this, Observer {
       if (it == Status.ALLOW) {
-        viewModel.session()
-      } else {
+        viewModel.requestSession()
+      } else if (it == Status.DENY) {
         Snackbar.make(view, R.string.user_deny, Snackbar.LENGTH_SHORT).show()
         requireActivity().finish()
       }

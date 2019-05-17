@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-  implementation(Dependencies.androidx.livedata.extensions)
+  implementation(Dependencies.androidx.liveData.extensions)
 
   api(Dependencies.retrofit.library)
   api(Dependencies.retrofit.rxJava)
