@@ -5,6 +5,7 @@ plugins {
 }
 
 val theMovieDatabaseApiKey: String by project
+val theMovieDatabaseToken: String by project
 
 android {
   compileSdkVersion(Versions.targetSdk)
@@ -16,6 +17,7 @@ android {
     consumerProguardFile("consumer-consumer-proguard-rules.pro")
 
     buildConfigField("String", "API_KEY", theMovieDatabaseApiKey)
+    buildConfigField("String", "TOKEN_V4", theMovieDatabaseToken)
   }
 
   compileOptions {

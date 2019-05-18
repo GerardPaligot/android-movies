@@ -30,7 +30,7 @@ class UserDisconnectedFragment : Fragment() {
     return FragmentUserDisconnectedBinding.inflate(inflater, container, false).run {
       client = LoginWebViewClient()
       connectionWebView.webViewClient = client
-      connectionWebView.webChromeClient = WebChromeClient()
+      // connectionWebView.webChromeClient = WebChromeClient()
       connectionWebView.settings.apply {
         javaScriptEnabled = true
       }

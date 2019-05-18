@@ -1,9 +1,6 @@
 package com.paligot.shared.session
 
-import com.paligot.shared.services.LogOut
-import com.paligot.shared.services.LogOutBody
-import com.paligot.shared.services.SessionBody
-import com.paligot.shared.services.TheMovieDatabaseService
+import com.paligot.shared.services.*
 import com.paligot.shared.session.database.SessionSharedPreferenceDataSource
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -13,20 +10,34 @@ class SessionRepositoryImpl(
   private val database: SessionSharedPreferenceDataSource
 ) : SessionRepository {
   override val isLogged: Single<Boolean>
-    get() = database.session
+    get() = database.accessToken
       .map { true }
       .onErrorReturn { false }
 
-  override val token: Single<String>
+  override val requestToken: Single<String>
     get() = service.requestToken()
-      .flatMap { database.saveToken(it.requestToken) }
-      .map { TheMovieDatabaseService.URL_AUTH.format(it) }
+      .doOnSuccess { database.saveRequestToken(it.requestToken) }
+      .map { TheMovieDatabaseService.URL_AUTH_V4.format(it.requestToken) }
 
-  override fun session(): Single<String> = database.token
-    .flatMap { service.requestSession(SessionBody(it)) }
-    .flatMap { database.saveSession(it.sessionId) }
+  override val accessToken: Single<String>
+    get() = database.requestToken
+      .flatMap { service.requestAccessToken(AccessTokenBody(it)) }
+      .flatMap { token ->
+        return@flatMap service.convertSession(ConvertSessionBody(token.accessToken))
+          .doOnSuccess {
+            database.saveSessionUser(token.accessToken, token.accountId)
+            database.saveSession(it.sessionId)
+          }
+          .map { token.accessToken }
+      }
 
-  override fun logout(): Completable = database.session
-    .flatMap { service.logout(LogOutBody(it)).onErrorReturn { LogOut(success = false) } }
+  override fun logout(): Completable = database.accessToken
+    .flatMap { service.logout(LogOutBody(it)) }
+    .onErrorReturn { LogOut(success = false) }
     .flatMapCompletable { database.clear() }
+
+  override val accountId: Single<String>
+    get() = database.accountId
+
+  override fun account(): Single<User> = database.session.flatMap { service.details(it) }
 }

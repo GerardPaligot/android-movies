@@ -1,6 +1,7 @@
 package com.paligot.user.disconnected
 
 import android.annotation.TargetApi
+import android.graphics.Bitmap
 import android.os.Build
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -17,6 +18,22 @@ class LoginWebViewClient : WebViewClient() {
   val event: LiveData<Status>
     get() = _event
 
+  override fun onPageFinished(view: WebView?, url: String?) {
+    super.onPageFinished(view, url)
+    if (url == null) return
+    if (url.endsWith("allow") || url.endsWith("approve")) {
+      _event.setValue(Status.ALLOW)
+    } else if (url.endsWith("deny")) {
+      _event.setValue(Status.DENY)
+    } else {
+      _event.setValue(Status.UNKNOWN)
+    }
+  }
+
+  override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+    super.onPageStarted(view, url, favicon)
+  }
+
   override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
     if (url != null) {
       return shouldLoadUrl(url)
@@ -30,17 +47,7 @@ class LoginWebViewClient : WebViewClient() {
   }
 
   private fun shouldLoadUrl(url: String): Boolean {
-    if (url.contains(TheMovieDatabaseService.DOMAIN).not()) {
-      return true
-    }
-    if (url.endsWith("allow")) {
-      _event.setValue(Status.ALLOW)
-    } else if (url.endsWith("deny")) {
-      _event.setValue(Status.DENY)
-    } else {
-      _event.setValue(Status.UNKNOWN)
-    }
-    return false
+    return url.contains(TheMovieDatabaseService.DOMAIN).not()
   }
 }
 

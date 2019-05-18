@@ -18,7 +18,7 @@ class ServiceModule {
   @Provides
   fun provideOkHttpClientBuilder(): OkHttpClient.Builder =
     OkHttpClient.Builder()
-      .addInterceptor(ClientAuthInterceptor(BuildConfig.API_KEY))
+      .addInterceptor(ClientAuthInterceptor())
       .addInterceptor(HttpLoggingInterceptor().apply {
         level = if (BuildConfig.DEBUG) {
           HttpLoggingInterceptor.Level.BODY
@@ -40,11 +40,9 @@ class ServiceModule {
     retrofit.create(TheMovieDatabaseService::class.java)
 }
 
-class ClientAuthInterceptor(private val clientId: String) : Interceptor {
+class ClientAuthInterceptor : Interceptor {
   override fun intercept(chain: Interceptor.Chain): Response {
-    val url = chain.request().url().newBuilder()
-      .addQueryParameter("api_key", clientId)
-      .build()
+    val url = chain.request().url().newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY).build()
     return chain.proceed(
       chain.request().newBuilder()
         .url(url)
