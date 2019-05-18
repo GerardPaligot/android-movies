@@ -1,6 +1,5 @@
 package com.paligot.shared.session
 
-import com.paligot.shared.services.User
 import io.reactivex.Completable
 import io.reactivex.Single
 

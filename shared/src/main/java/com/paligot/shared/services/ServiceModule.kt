@@ -14,7 +14,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class ServiceModule {
-
   @Provides
   fun provideOkHttpClientBuilder(): OkHttpClient.Builder =
     OkHttpClient.Builder()
@@ -29,16 +28,16 @@ class ServiceModule {
 
   @Provides
   fun provideRetrofit(okHttpBuilder: OkHttpClient.Builder): Retrofit = Retrofit.Builder()
-    .baseUrl(TheMovieDatabaseService.ENDPOINT)
+    .baseUrl(ENDPOINT)
     .client(okHttpBuilder.build())
     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     .addConverterFactory(GsonConverterFactory.create(Gson()))
     .build()
-
-  @Provides
-  fun provideTheMovieDatabaseService(retrofit: Retrofit): TheMovieDatabaseService =
-    retrofit.create(TheMovieDatabaseService::class.java)
 }
+
+const val ENDPOINT = "https://api.themoviedb.org"
+const val DOMAIN = "themoviedb.org"
+const val URL_AUTH_V4 = "https://www.themoviedb.org/auth/access?request_token=%s"
 
 class ClientAuthInterceptor : Interceptor {
   override fun intercept(chain: Interceptor.Chain): Response {

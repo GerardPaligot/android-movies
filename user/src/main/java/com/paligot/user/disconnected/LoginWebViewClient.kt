@@ -8,7 +8,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.lifecycle.LiveData
 import com.paligot.shared.livedata.SingleLiveEvent
-import com.paligot.shared.services.TheMovieDatabaseService
+import com.paligot.shared.services.DOMAIN
+import com.paligot.shared.session.SessionService
 
 class LoginWebViewClient : WebViewClient() {
   private val _event by lazy {
@@ -47,7 +48,7 @@ class LoginWebViewClient : WebViewClient() {
   }
 
   private fun shouldLoadUrl(url: String): Boolean {
-    return url.contains(TheMovieDatabaseService.DOMAIN).not()
+    return url.contains(DOMAIN).not()
   }
 }
 

@@ -1,12 +1,12 @@
 package com.paligot.shared.session
 
-import com.paligot.shared.services.*
+import com.paligot.shared.services.URL_AUTH_V4
 import com.paligot.shared.session.database.SessionSharedPreferenceDataSource
 import io.reactivex.Completable
 import io.reactivex.Single
 
 class SessionRepositoryImpl(
-  private val service: TheMovieDatabaseService,
+  private val service: SessionService,
   private val database: SessionSharedPreferenceDataSource
 ) : SessionRepository {
   override val isLogged: Single<Boolean>
@@ -17,7 +17,7 @@ class SessionRepositoryImpl(
   override val requestToken: Single<String>
     get() = service.requestToken()
       .doOnSuccess { database.saveRequestToken(it.requestToken) }
-      .map { TheMovieDatabaseService.URL_AUTH_V4.format(it.requestToken) }
+      .map { URL_AUTH_V4.format(it.requestToken) }
 
   override val accessToken: Single<String>
     get() = database.requestToken

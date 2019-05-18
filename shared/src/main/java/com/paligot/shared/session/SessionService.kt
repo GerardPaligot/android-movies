@@ -1,11 +1,11 @@
-package com.paligot.shared.services
+package com.paligot.shared.session
 
 import com.google.gson.annotations.SerializedName
 import com.paligot.shared.BuildConfig
 import io.reactivex.Single
 import retrofit2.http.*
 
-interface TheMovieDatabaseService {
+interface SessionService {
   @POST(value = "/3/authentication/session/convert/4")
   @Headers("Content-Type: application/json;charset=utf-8")
   fun convertSession(@Body body: ConvertSessionBody): Single<Session>
@@ -25,13 +25,6 @@ interface TheMovieDatabaseService {
 
   @GET(value = "/3/account")
   fun details(@Query("session_id") sessionId: String): Single<User>
-
-  companion object {
-    private const val HOST = "https://www.themoviedb.org"
-    const val DOMAIN = "themoviedb.org"
-    const val ENDPOINT = "https://api.themoviedb.org"
-    const val URL_AUTH_V4 = "$HOST/auth/access?request_token=%s"
-  }
 }
 
 data class ConvertSessionBody(@SerializedName("access_token") val accessToken: String)
