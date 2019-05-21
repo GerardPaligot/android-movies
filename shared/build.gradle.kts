@@ -36,6 +36,7 @@ android {
 
 dependencies {
   implementation(Dependencies.androidx.liveData.extensions)
+  implementation(Dependencies.androidx.paging.library)
 
   api(Dependencies.retrofit.library)
   api(Dependencies.retrofit.rxJava)
@@ -51,4 +52,5 @@ dependencies {
   kapt(Dependencies.dagger.compiler)
 
   implementation(Dependencies.kotlin)
+  implementation(Dependencies.rxAndroid)
 }

@@ -14,22 +14,23 @@ class SessionRepositoryImpl(
       .map { true }
       .onErrorReturn { false }
 
-  override val requestToken: Single<String>
-    get() = service.requestToken()
-      .doOnSuccess { database.saveRequestToken(it.requestToken) }
-      .map { URL_AUTH_V4.format(it.requestToken) }
+  override val token: Single<String>
+    get() = database.accessToken
 
-  override val accessToken: Single<String>
-    get() = database.requestToken
-      .flatMap { service.requestAccessToken(AccessTokenBody(it)) }
-      .flatMap { token ->
-        return@flatMap service.convertSession(ConvertSessionBody(token.accessToken))
-          .doOnSuccess {
-            database.saveSessionUser(token.accessToken, token.accountId)
-            database.saveSession(it.sessionId)
-          }
-          .map { token.accessToken }
-      }
+  override fun requestToken(): Single<String> = service.requestToken()
+    .doOnSuccess { database.saveRequestToken(it.requestToken) }
+    .map { URL_AUTH_V4.format(it.requestToken) }
+
+  override fun accessToken(): Single<String> = database.requestToken
+    .flatMap { service.requestAccessToken(AccessTokenBody(it)) }
+    .flatMap { token ->
+      return@flatMap service.convertSession(ConvertSessionBody(token.accessToken))
+        .doOnSuccess {
+          database.saveSessionUser(token.accessToken, token.accountId)
+          database.saveSession(it.sessionId)
+        }
+        .map { token.accessToken }
+    }
 
   override fun logout(): Completable = database.accessToken
     .flatMap { service.logout(LogOutBody(it)) }

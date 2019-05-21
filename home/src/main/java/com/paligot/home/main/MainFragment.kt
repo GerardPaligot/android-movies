@@ -1,5 +1,6 @@
 package com.paligot.home.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.paligot.home.R
 import com.paligot.home.databinding.FragmentMainBinding
+import com.paligot.home.homeApplication
 
 
 class MainFragment : Fragment() {
@@ -16,6 +18,11 @@ class MainFragment : Fragment() {
     ViewModelProviders.of(requireActivity())[NavigationViewModel::class.java]
   }
   private lateinit var binding: FragmentMainBinding
+
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+    homeApplication.onCreate(context)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

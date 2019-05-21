@@ -9,6 +9,7 @@ object Versions {
   val constraint = "1.1.3"
   val recyclerview = "1.0.0"
   val cardview = "1.0.0"
+  val paging = "2.1.0"
   val navigation = "2.1.0-alpha03"
   val livedata = "2.1.0-beta01"
 
@@ -54,6 +55,7 @@ object AndroidX {
   val recycler = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
   val liveData = LiveData
   val navigation = Navigation
+  val paging = Paging
 }
 
 object Navigation {
@@ -67,6 +69,11 @@ object LiveData {
   val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.livedata}"
   val ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.livedata}"
   val rx = "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.livedata}"
+}
+
+object Paging {
+  val library = "androidx.paging:paging-runtime:${Versions.paging}"
+  val ktx = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
 }
 
 object Retrofit {

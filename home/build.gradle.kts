@@ -43,11 +43,19 @@ dependencies {
   implementation(Dependencies.androidx.material)
   implementation(Dependencies.androidx.liveData.extensions)
   kapt(Dependencies.androidx.liveData.compiler)
+  implementation(Dependencies.androidx.paging.library)
+  implementation(Dependencies.androidx.paging.ktx)
 
   implementation(Dependencies.androidx.navigation.fragment)
   implementation(Dependencies.androidx.navigation.ui)
 
+  implementation(Dependencies.dagger.library)
+  kapt(Dependencies.dagger.compiler)
+  implementation(Dependencies.dagger.android)
+  kapt(Dependencies.dagger.androidCompiler)
+
   implementation(Dependencies.kotlin)
   implementation(Dependencies.picasso)
   implementation(Dependencies.timber)
+  implementation(Dependencies.rxAndroid)
 }

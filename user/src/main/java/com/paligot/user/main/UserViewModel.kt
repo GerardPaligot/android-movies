@@ -56,7 +56,7 @@ class UserViewModel(private val sessionRepository: SessionRepository) : ViewMode
 
   fun requestToken() {
     subscription.add(
-      sessionRepository.requestToken
+      sessionRepository.requestToken()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({
@@ -70,7 +70,7 @@ class UserViewModel(private val sessionRepository: SessionRepository) : ViewMode
 
   fun requestSession() {
     subscription.add(
-      sessionRepository.accessToken
+      sessionRepository.accessToken()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({
